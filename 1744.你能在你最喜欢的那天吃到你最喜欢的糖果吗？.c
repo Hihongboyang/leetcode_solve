@@ -12,34 +12,30 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <limits.h>
 
 bool *canEat(int *candiesCount, int candiesCountSize, int **queries, int queriesSize, int *queriesColSize, int *returnSize)
 {
-    int max_candy=0, min_candy=0, max_need=0, min_need=0, i,j;
-    bool *answer = (bool *)malloc(sizeof(bool) * (*returnSize));
+    long max_candy = 0, min_candy = 0, max_need = 0, min_need = 0, sum[candiesCountSize];
+    int i, j;
+    sum[0] = candiesCount[0];
+    for (int i = 1; i < candiesCountSize; i++)
+    {
+        sum[i] = sum[i - 1] + candiesCount[i];
+    }
+
+    bool *answer = (bool *)malloc(sizeof(bool) * queriesSize);
+    *returnSize = queriesSize;
 
     for (i = 0; i < queriesSize; i++)
     {
-        max_candy = queries[i][1] * queries[i][2];
-        min_candy = queries[i][1];
+        min_candy = queries[i][1] + 1;
+        max_candy = min_candy * queries[i][2];
 
-        for (j = 0; j <= queries[i][0]; j++)
-        {
-            max_need += candiesCount[j];
-        }
-        min_need = max_need - candiesCount[j-1] + 1;
+        min_need = queries[i][0] == 0 ? 1 : sum[queries[i][0] - 1] + 1;
+        max_need = sum[queries[i][0]];
 
-        if (max_need < min_need || min_need > max_candy)
-        {
-            *answer = false;
-        }
-        else
-        {
-            *answer = true;
-        }
-        answer++;
-        max_need = 0;
-        min_need = 0;
+        answer[i] = !(max_need < min_candy || min_need > max_candy);
     }
     return answer;
 }
