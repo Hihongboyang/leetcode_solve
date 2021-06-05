@@ -40,26 +40,4 @@ bool *canEat(int *candiesCount, int candiesCountSize, int **queries, int queries
     return answer;
 }
 
-// int main(int argc, char const *argv[])
-// {
-//     int *length, len = 3;
-//     int first[] = {0,2,2};
-//     int sec[] = {4,2,4};
-//     int thirt[] = {2,13,1000000000};
-//     bool *some;
-
-//     int queries[] = {7,4,5,3,8};
-
-//     int *matrix[3] = {first, sec, thirt};
-//     length = &len;
-
-//     some = canEat(queries, 3, matrix, 3, length, length);
-
-//     for (int i = 0; i < 3; i++)
-//     {
-//         printf("%d ", *some++);
-//     }
-//     return 0;
-// }
-
 // @lc code=end
