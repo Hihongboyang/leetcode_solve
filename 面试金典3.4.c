@@ -71,7 +71,7 @@ int myQueuePop(MyQueue *obj)
     }
     else
     {
-        return;
+        return -1;
     }
     return ret_val;
 }
