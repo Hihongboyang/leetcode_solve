@@ -22,22 +22,17 @@ class Solution:
         while queue_list:
             root = ListNode(-1)
             root_p = root
-            for i in queue_list:
-                temp = ListNode(i.val)
+            for i in range(len(queue_list)):
+                cur_node = queue_list.pop(0)
+                temp = ListNode(cur_node.val)
                 root_p.next = temp
                 root_p = temp
+
+                if cur_node.left:
+                    queue_list.append(cur_node.left)
+
+                if cur_node.right:
+                    queue_list.append(cur_node.right)
             ret_list.append(root.next)
-            queue_list.append(-1)
-
-            while queue_list:
-                temp = queue_list.pop(0)
-                if temp == -1:
-                    break
-
-                if temp.left:
-                    queue_list.append(temp.left)
-
-                if temp.right:
-                    queue_list.append(temp.right)
         return ret_list
 
