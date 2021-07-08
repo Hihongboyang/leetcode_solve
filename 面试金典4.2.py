@@ -11,12 +11,7 @@ class Solution:
         if length < 1:
             return None
         TreeList = [TreeNode(x) for x in nums] # 将数据都转为节点
-        root = TreeList[length / 2]  # 取最中间的节点为根节点
-        root.left = self.helper(TreeList[:length / 2])
-        root.right = self.helper(TreeList[(length / 2)+1:])
-
-
-        return root
+        return self.helper(TreeList)
 
     def helper(self, nums):
         length = len(nums)
@@ -26,8 +21,8 @@ class Solution:
         elif length == 0:
             return None
 
-        root = nums[length/2]
-        root.left = self.helper(nums[:length/2])
-        root.right = self.helper(nums[(length/2 + 1):])
+        root = nums[length//2]
+        root.left = self.helper(nums[:length//2])
+        root.right = self.helper(nums[(length//2 + 1):])
 
         return root
