@@ -15,9 +15,9 @@ class Solution:
         MIN_VAL = float("-inf")
 
         while stack or root:
-            while root:
+            while root:    # ======================root
                 # 首先按照左子树路径全部压入栈中。
-                stack.append(root)
+                stack.append(root)   # 所有的需要遍历的节点都放在栈中
                 root = root.left
 
             cur_node = stack.pop(-1)
@@ -25,7 +25,7 @@ class Solution:
                 return False
             
             MIN_VAL = cur_node.val
-            root = cur_node.right
+            root = cur_node.right  # ======================root
 
         return True
 
