@@ -10,6 +10,8 @@
 
 # @lcpr-template-end
 # @lc code=start
+
+# 滑动窗口
 from sortedcontainers import SortedList
 
 class Solution:
@@ -27,7 +29,7 @@ class Solution:
                 window.remove(nums[left])
                 left += 1
 
-            index = bisect.bisect_left(window, nums[right])
+            index = bisect.bisect_left(window, nums[right])  # 它用于在有序列表中找到一个元素的插入位置，以保持列表的有序性
 
             if index > 0 and nums[right] - window[index - 1] <= valueDiff:
                 return True
